@@ -95,30 +95,58 @@
 <body class="text-gray-800">
 
     <!-- ========== ENCABEZADO ========== -->
-    <header class="bg-gray-100 shadow-md sticky top-0 z-50">
+    <header class="bg-gray-100 shadow-md sticky top-0 z-40">
         <div class="container mx-auto px-4">
-            <!-- Barra superior: Logo, Búsqueda, Iconos -->
             <div class="flex justify-between items-center py-4">
-                <!-- Espacio a la izquierda (con eslogan opcional) -->
+                <!-- Eslogan a la izquierda (visible en pantallas grandes) -->
                 <div class="w-1/3">
-                    <p class="font-semibold text-gray-700 hidden lg:block">Insumos para Cerveceros</p>
+                    <p class="font-semibold text-sm text-gray-700 hidden lg:block">Insumos para Cerveceros</p>
                 </div>
 
                 <!-- Logo Centrado -->
-                <div class="w-1/3 flex justify-center">
+                <div class="w-1/3 flex justify-center lg:justify-center">
                     <a href="#">
                         <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-10 logo-shadow">
                     </a>
                 </div>
 
-                <!-- Botones de Navegación a la derecha -->
-                <div class="w-1/3 flex justify-end items-center space-x-2">
-                    <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Inicio</a>
-                    <a href="#contact-form" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Contacto</a>
+                <!-- Navegación a la derecha -->
+                <div class="w-1/3 flex justify-end items-center">
+                    <!-- Botones para Desktop -->
+                    <div class="hidden md:flex items-center space-x-2">
+                        <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Inicio</a>
+                        <a href="#contact-form" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Contacto</a>
+                    </div>
+                    <!-- Botón de Menú Hamburguesa para Móvil -->
+                    <div class="md:hidden">
+                        <button id="hamburger-button" class="text-gray-600 hover:text-brand-green focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- ========== MENÚ MÓVIL (oculto por defecto) ========== -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-50">
+        <!-- Botón para cerrar el menú -->
+        <div class="flex justify-end p-4">
+            <button id="close-menu-button" class="text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Enlaces del menú -->
+        <div class="flex flex-col items-center justify-center h-full -mt-16 space-y-8">
+            <a href="#" class="mobile-menu-link text-white text-3xl font-bold">Inicio</a>
+            <a href="#contact-form" class="mobile-menu-link text-white text-3xl font-bold">Contacto</a>
+        </div>
+    </div>
+
 
     <!-- ========== CONTENIDO PRINCIPAL ========== -->
     <main>
@@ -342,7 +370,7 @@
                  </div>
             </div>
             <div class="border-t border-gray-700 pt-8 mt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2021 Pekko Insumos Cerveceros. Todos los derechos reservados.</p>
+                <p>&copy; 2021 PEKKO Insumos Cerveceros. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -408,15 +436,32 @@
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
-                    // Cierra todas las preguntas abiertas excepto la actual si ya está abierta
                     faqQuestions.forEach(otherQuestion => {
                         if (otherQuestion !== question && otherQuestion.classList.contains('open')) {
                             otherQuestion.classList.remove('open');
                         }
                     });
-
-                    // Abre o cierra la pregunta actual
                     question.classList.toggle('open');
+                });
+            });
+
+            // --- Script para el Menú Hamburguesa ---
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+            hamburgerButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+            });
+
+            closeMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
                 });
             });
         });
