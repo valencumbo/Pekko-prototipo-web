@@ -73,6 +73,23 @@
                 opacity: 0;
             }
         }
+        
+        /* Estilos para el acordeón de FAQ */
+        .faq-answer {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+        .faq-question.open + .faq-answer {
+            max-height: 300px; /* Ajusta este valor si la respuesta es muy larga */
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .faq-question.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
     </style>
 </head>
 <body class="text-gray-800">
@@ -82,24 +99,20 @@
         <div class="container mx-auto px-4">
             <!-- Barra superior: Logo, Búsqueda, Iconos -->
             <div class="flex justify-between items-center py-4">
-                <!-- Logo a la izquierda -->
-                <div class="flex-shrink-0">
+                <!-- Espacio a la izquierda (con eslogan opcional) -->
+                <div class="w-1/3">
+                    <p class="font-semibold text-gray-700 hidden lg:block">Insumos para Cerveceros</p>
+                </div>
+
+                <!-- Logo Centrado -->
+                <div class="w-1/3 flex justify-center">
                     <a href="#">
                         <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-10 logo-shadow">
                     </a>
                 </div>
 
-                <div class="hidden md:block w-full max-w-lg">
-                    <div class="relative">
-                        <input type="search" placeholder="Buscar lúpulos, maltas, levaduras..." class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-yellow">
-                        <button class="absolute right-0 top-0 mt-2 mr-3">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        </button>
-                    </div>
-                </div>
-
                 <!-- Botones de Navegación a la derecha -->
-                <div class="flex items-center space-x-2">
+                <div class="w-1/3 flex justify-end items-center space-x-2">
                     <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Inicio</a>
                     <a href="#contact-form" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Contacto</a>
                 </div>
@@ -115,7 +128,6 @@
             <div class="relative z-10 text-center px-4">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">La Calidad que tu Cerveza Merece</h1>
                 <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Encontrá la mejor selección de lúpulos, maltas y levaduras para llevar tu producción al siguiente nivel.</p>
-                <a href="#" class="bg-brand-yellow text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-brand-yellow-dark transition-colors">Ver todos los productos</a>
             </div>
         </section>
 
@@ -126,43 +138,43 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     
                     <!-- Tarjeta 1: Barth Haas Group -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                        <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/barth-haas-group.jpg" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex justify-center items-center h-20 w-full mb-6"><img src="gallery/barth-haas-group.jpg" alt="Logo Barth Haas Group" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Barth Haas Group</h3>
                         <p class="text-gray-600">Barth Haas Group junto a Hop Breeding Company son líderes en el mundo del desarrollo, cultivo, procesamiento y comercialización de lúpulos.</p>
                     </div>
 
                     <!-- Tarjeta 2: Fermentis -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                        <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/fermentis.jpg" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex justify-center items-center h-20 w-full mb-9"><img src="gallery/fermentis.jpg" alt="Logo Fermentis" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Fermentis</h3>
                         <p class="text-gray-600">Las levaduras secas preferidas por la industria cervecera gracias a su gran variedad de perfiles y calidad absoluta. Garantía y seguridad en fermentaciones.</p>
                     </div>
 
                     <!-- Tarjeta 3: Hopsteiner -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                        <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/hopsteiner.jpg" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex justify-center items-center h-20 w-full mb-6"><img src="gallery/hopsteiner.jpg" alt="Logo Hopsteiner" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Hopsteiner</h3>
                         <p class="text-gray-600">Creemos desde el primer momento en Hopsteiner, por su trayectoria y reconocimiento en todas las variedades, tanto americanas como europeas.</p>
                     </div>
 
                     <!-- Tarjeta 4: Ingredion -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                         <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/ingredion.png-e1573151120694.jpg" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                         <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/ingredion.png-e1573151120694.jpg" alt="Logo Ingredion" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Ingredion</h3>
                         <p class="text-gray-600">Empresa líder en la elaboración de edulcorantes, almidones, ingredientes nutricionales y biomateriales que son utilizados en alimentos, bebidas.</p>
                     </div>
                     
                     <!-- Tarjeta 5: Pall -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                         <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/pall-corporation.jpg" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                         <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/pall-corporation.jpg" alt="Logo Pall Corporation" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Pall</h3>
                         <p class="text-gray-600">Pall es líder a nivel mundial en sistemas de filtrado en la industria alimenticia. Trabajamos la línea de filtros de celulosa para filtro de placas y marcos.</p>
                     </div>
 
                     <!-- Tarjeta 6: Patagonia Malt -->
-                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-sm">
-                         <div class="flex justify-center items-center h-20 w-full bg-gray-200 rounded-md mb-4 text-sm text-gray-500"><img src="gallery/patagonia-malt.png" alt=""></div>
+                    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                         <div class="flex justify-center items-center h-20 w-full mb-9"><img src="gallery/patagonia-malt.png" alt="Logo Patagonia Malt" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Patagonia Malt</h3>
                         <p class="text-gray-600">Elegimos Patagonia por ser una empresa seria y confiable. Con foco en el mercado Craft de toda América, sus productos están en constante evolución.</p>
                     </div>
@@ -171,7 +183,7 @@
         </section>
 
         <!-- Sección Accesorios -->
-        <section class="py-12 bg-gray-100">
+        <section class="py-12 bg-gray-100 border-t border-gray-300">
             <div class="container mx-auto px-4 text-center max-w-3xl">
                 <div class="flex justify-center items-center gap-4 mb-4">
                     <svg class="w-10 h-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -196,6 +208,55 @@
                 </form>
             </div>
         </section>
+
+        <!-- Sección de Preguntas Frecuentes (FAQ) -->
+        <section id="faq-section" class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 text-brand-green">Preguntas Frecuentes</h2>
+                    <p class="text-gray-600 mb-12">Resolvemos algunas de las dudas más comunes de nuestros clientes.</p>
+                </div>
+                <div class="space-y-4">
+                    <!-- Pregunta 1 -->
+                    <div class="bg-gray-50 rounded-lg">
+                        <button class="faq-question flex justify-between items-center w-full p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-800">¿Cómo debo almacenar los lúpulos?</span>
+                            <span class="faq-icon text-brand-green text-2xl font-light">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-600">Para preservar al máximo sus aceites esenciales y alfa ácidos, los lúpulos deben almacenarse en un freezer o congelador, dentro de su envase original sellado al vacío y protegidos de la luz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pregunta 2 -->
+                    <div class="bg-gray-50 rounded-lg">
+                        <button class="faq-question flex justify-between items-center w-full p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-800">¿Realizan envíos a todo el país?</span>
+                            <span class="faq-icon text-brand-green text-2xl font-light">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-600">Sí, realizamos envíos a todas las provincias de Argentina. Trabajamos con varios servicios de correo para asegurar que tu pedido llegue en tiempo y forma, manteniendo siempre la cadena de frío cuando es necesario.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pregunta 3 -->
+                    <div class="bg-gray-50 rounded-lg">
+                        <button class="faq-question flex justify-between items-center w-full p-6 text-left">
+                            <span class="text-lg font-semibold text-gray-800">¿Qué levadura me recomiendan para una IPA?</span>
+                            <span class="faq-icon text-brand-green text-2xl font-light">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-600">Para una American IPA, la levadura más popular y confiable es la Safale US-05 de Fermentis. Proporciona un perfil de fermentación muy limpio y neutro, lo que permite que el aroma y sabor del lúpulo sean los protagonistas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Sección Formulario de Contacto -->
         <section id="contact-form" class="bg-gray-100 py-16">
@@ -245,50 +306,43 @@
     </main>
 
     <!-- ========== PIE DE PÁGINA ========== -->
-    <footer class="bg-white border-t">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-brand-green text-white">
+        <div class="container mx-auto px-4 pt-16 pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
                 <!-- Columna 1: Info -->
-                <div>
-                    <h4 class="font-semibold text-lg mb-4 text-brand-green">Pekko Insumos</h4>
-                    <p class="text-gray-600">Apasionados por la cerveza, comprometidos con la calidad. Tu proveedor de confianza para insumos cerveceros.</p>
+                <div class="md:col-span-1">
+                    <h4 class="font-bold text-xl mb-4 text-yellow-300">Pekko Insumos</h4>
+                    <p class="text-gray-300">Apasionados por la cerveza, comprometidos con la calidad. Tu proveedor de confianza para insumos cerveceros.</p>
                 </div>
                 <!-- Columna 2: Navegación -->
                 <div>
-                    <h4 class="font-semibold text-lg mb-4">Navegación</h4>
+                    <h4 class="font-bold text-xl mb-4 text-yellow-300">Navegación</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Sobre Nosotros</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Preguntas Frecuentes</a></li>
-                        <li><a href="#contact-form" class="text-gray-600 hover:text-brand-green">Contacto</a></li>
+                        <li><a href="#faq-section" class="text-gray-300 hover:text-white">Preguntas Frecuentes</a></li>
+                        <li><a href="#contact-form" class="text-gray-300 hover:text-white">Contacto</a></li>
                     </ul>
                 </div>
-                <!-- Columna 3: Contacto -->
+                <!-- Columna 3: Contacto y Redes -->
                  <div>
-                    <h4 class="font-semibold text-lg mb-4">Contacto</h4>
-                    <ul class="space-y-2 text-gray-600">
+                    <h4 class="font-bold text-xl mb-4 text-yellow-300">Contacto</h4>
+                    <ul class="space-y-2 text-gray-300 mb-6">
                         <li>Dirección: Calle Falsa 123, Springfield</li>
                         <li>Teléfono: +54 11 1234-5678</li>
                         <li>Email: ventas@pekko.com.ar</li>
                     </ul>
-                </div>
-                <!-- Columna 4: Redes Sociales -->
-                <div>
-                    <h4 class="font-semibold text-lg mb-4">Seguinos</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-500 hover:text-brand-green">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-transform hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-brand-green">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363.416 2.427.465C9.793 2.013 10.147 2 12.315 2zm0 1.623c-2.403 0-2.73.009-3.685.053-.934.042-1.512.185-1.948.355-.494.192-.884.44-1.272.828-.39.388-.636.778-.828 1.272-.17.436-.313 1.014-.355 1.948-.044.955-.053 1.282-.053 3.685s.009 2.73.053 3.685c.042.934.185 1.512.355 1.948.192.494.44.884.828 1.272.388.39.778.636 1.272.828.436.17 1.014.313 1.948.355.955.044 1.282.053 3.685.053s2.73-.009 3.685-.053c.934-.042 1.512-.185 1.948-.355.494-.192.884.44-1.272-.828.39-.388.636-.778.828-1.272.17-.436.313-1.014-.355-1.948.044-.955.053-1.282.053-3.685s-.009-2.73-.053-3.685c-.042-.934-.185-1.512-.355-1.948a3.273 3.273 0 00-.828-1.272 3.273 3.273 0 00-1.272-.828c-.436-.17-1.014-.313-1.948-.355-.955-.044-1.282-.053-3.685-.053zM12 8.118a5.882 5.882 0 100 11.764 5.882 5.882 0 000-11.764zm0 9.577a3.695 3.695 0 110-7.39 3.695 3.695 0 010 7.39zM18.882 5.466a1.432 1.432 0 100 2.864 1.432 1.432 0 000-2.864z" clip-rule="evenodd" /></svg>
+                        <a href="#" class="text-gray-300 hover:text-white transition-transform hover:scale-110">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.74 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98C23.986 15.667 24 15.26 24 12s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg>
                         </a>
+                        <span class="text-gray-300"> Seguinos en nuestras redes</span>
                     </div>
-                </div>
+                 </div>
             </div>
-        </div>
-        <!-- Barra de copyright -->
-        <div class="bg-gray-200 border-t">
-            <div class="container mx-auto px-4 py-4 text-center text-gray-600 text-sm">
-                <p>&copy; 2024 Pekko Insumos Cerveceros. Todos los derechos reservados.</p>
+            <div class="border-t border-gray-700 pt-8 mt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2021 Pekko Insumos Cerveceros. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -349,6 +403,22 @@
                     }
                 });
             }
+
+            // --- Script para el Acordeón de FAQ ---
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    // Cierra todas las preguntas abiertas excepto la actual si ya está abierta
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question && otherQuestion.classList.contains('open')) {
+                            otherQuestion.classList.remove('open');
+                        }
+                    });
+
+                    // Abre o cierra la pregunta actual
+                    question.classList.toggle('open');
+                });
+            });
         });
     </script>
 </body>
