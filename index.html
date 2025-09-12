@@ -98,23 +98,20 @@
     <header class="bg-gray-100 shadow-md sticky top-0 z-40">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <!-- Eslogan a la izquierda (visible en pantallas grandes) -->
-                <div class="w-1/3">
-                    <p class="font-semibold text-sm text-gray-700 hidden lg:block">Insumos para Cerveceros</p>
-                </div>
-
-                <!-- Logo Centrado -->
-                <div class="w-1/3 flex justify-center lg:justify-center">
-                    <a href="#">
-                        <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-10 logo-shadow">
+                <!-- Logo y Slogan a la izquierda -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-3">
+                        <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-12 logo-shadow">
+                        <span class="text-gray-600 font-semibold hidden sm:block px-3">Impulsando nuestra industria</span>
                     </a>
                 </div>
 
                 <!-- Navegación a la derecha -->
-                <div class="w-1/3 flex justify-end items-center">
+                <div class="flex justify-end items-center">
                     <!-- Botones para Desktop -->
                     <div class="hidden md:flex items-center space-x-2">
                         <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Inicio</a>
+                        <a href="#certificados-section" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Certificados</a>
                         <a href="#contact-form" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green transition-colors rounded-md hover:bg-gray-200">Contacto</a>
                     </div>
                     <!-- Botón de Menú Hamburguesa para Móvil -->
@@ -143,6 +140,7 @@
         <!-- Enlaces del menú -->
         <div class="flex flex-col items-center justify-center h-full -mt-16 space-y-8">
             <a href="#" class="mobile-menu-link text-white text-3xl font-bold">Inicio</a>
+            <a href="#certificados-section" class="mobile-menu-link text-white text-3xl font-bold">Certificados</a>
             <a href="#contact-form" class="mobile-menu-link text-white text-3xl font-bold">Contacto</a>
         </div>
     </div>
@@ -209,22 +207,9 @@
                 </div>
             </div>
         </section>
-
-        <!-- Sección Accesorios -->
-        <section class="py-12 bg-gray-100 border-t border-gray-300">
-            <div class="container mx-auto px-4 text-center max-w-3xl">
-                <div class="flex justify-center items-center gap-4 mb-4">
-                    <svg class="w-10 h-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 00-4.773-4.773L6.75 11.25l-2.472 2.472a3.375 3.375 0 004.773 4.773z" />
-                    </svg>
-                    <h3 class="text-2xl font-bold text-brand-green">Accesorios de Acero Inoxidable</h3>
-                </div>
-                <p class="text-gray-600">Tenemos una amplia gama de accesorios de inoxidable para diferentes aplicaciones en la fabricación de cerveza artesanal. Para consultas y pedidos especiales, no dudes en escribirnos.</p>
-            </div>
-        </section>
         
         <!-- Sección Certificados / Búsqueda de Lote -->
-        <section class="py-16 bg-brand-green text-white">
+        <section id="certificados-section" class="py-16 bg-brand-green text-white">
             <div class="container mx-auto px-4 text-center max-w-3xl">
                 <h2 class="text-3xl font-bold mb-4">Certificados de Calidad</h2>
                 <p class="mb-8 max-w-2xl mx-auto">Ingresá el ID del lote que figura en tu paquete para ver su certificado de análisis y trazabilidad completa.</p>
@@ -287,7 +272,7 @@
 
 
         <!-- Sección Formulario de Contacto -->
-        <section id="contact-form" class="bg-gray-100 py-16">
+        <section id="contact-form" class="bg-gray-100 py-16 border-t border-gray-200">
             <div class="container mx-auto px-4">
                 <div class="max-w-2xl mx-auto text-center">
                     <h2 class="text-3xl font-bold mb-4 text-brand-green">Ponete en Contacto</h2>
@@ -347,6 +332,7 @@
                     <h4 class="font-bold text-xl mb-4 text-yellow-300">Navegación</h4>
                     <ul class="space-y-2">
                         <li><a href="#faq-section" class="text-gray-300 hover:text-white">Preguntas Frecuentes</a></li>
+                        <li><a href="#certificados-section" class="text-gray-300 hover:text-white">Certificados</a></li>
                         <li><a href="#contact-form" class="text-gray-300 hover:text-white">Contacto</a></li>
                     </ul>
                 </div>
@@ -370,7 +356,7 @@
                  </div>
             </div>
             <div class="border-t border-gray-700 pt-8 mt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2021 PEKKO Insumos Cerveceros. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Pekko Insumos Cerveceros. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
