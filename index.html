@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pekko - Insumos para Cerveceros</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Habilitar el desplazamiento suave para los anclajes */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Usamos la fuente Inter como base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* bg-slate-50 */
+        }
+        
+        /* Colores de la marca para fácil acceso */
+        :root {
+            --brand-green: #2E4C3E;
+            --brand-yellow: #facc15;
+        }
+
+        .text-brand-green { color: var(--brand-green); }
+        .bg-brand-green { background-color: var(--brand-green); }
+        .bg-brand-yellow { background-color: var(--brand-yellow); }
+        .hover\:bg-brand-yellow-dark:hover { background-color: #eab308; }
+        .focus\:ring-brand-yellow:focus { --tw-ring-color: var(--brand-yellow); }
+
+
+        /* Sombra sutil para el logo blanco sobre fondo claro */
+        .logo-shadow {
+            /* Se aplica un "delineado" oscuro apilando múltiples sombras sin desenfoque */
+            filter: drop-shadow(1px 1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(-1px -1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(1px -1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(-1px 1px 0 rgb(0 0 0 / 0.7));
+        }
+
+        /* Animación de fondo para la sección Héroe */
+        .animated-bg {
+            background-color: var(--brand-green);
+            overflow: hidden;
+        }
+        .hop-particle {
+            position: absolute;
+            bottom: -20px;
+            background-color: rgba(250, 204, 21, 0.4);
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(20px);
+            }
+            100% {
+                transform: translateY(-100vh) translateX(-20px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- ========== ENCABEZADO ========== -->
+    <header class="bg-gray-100 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <!-- Barra superior: Logo, Búsqueda, Iconos -->
+            <div class="flex justify-between items-center py-4">
+                <div class="flex-shrink-0">
+                    <a href="#">
+                        <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-10 logo-shadow">
+                    </a>
+                </div>
+                <div class="hidden md:block w-full max-w-lg">
+                    <div class="relative">
+                        <input type="search" placeholder="Buscar lúpulos, maltas, levaduras..." class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-yellow">
+                        <button class="absolute right-0 top-0 mt-2 mr-3">
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-brand-green" title="Nuestro Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363.416 2.427.465C9.793 2.013 10.147 2 12.315 2zm0 1.623c-2.403 0-2.73.009-3.685.053-.934.042-1.512.185-1.948.355-.494.192-.884.44-1.272.828-.39.388-.636.778-.828 1.272-.17.436-.313 1.014-.355 1.948-.044.955-.053 1.282-.053 3.685s.009 2.73.053 3.685c.042.934.185 1.512.355 1.948.192.494.44.884.828 1.272.388.39.778.636 1.272.828.436.17 1.014.313 1.948.355.955.044 1.282.053 3.685.053s2.73-.009 3.685-.053c.934-.042 1.512-.185 1.948-.355.494-.192.884.44-1.272-.828.39-.388.636-.778.828-1.272.17-.436.313-1.014-.355-1.948.044-.955.053-1.282.053-3.685s-.009-2.73-.053-3.685c-.042-.934-.185-1.512-.355-1.948a3.273 3.273 0 00-.828-1.272 3.273 3.273 0 00-1.272-.828c-.436-.17-1.014-.313-1.948-.355-.955-.044-1.282-.053-3.685-.053zM12 8.118a5.882 5.882 0 100 11.764 5.882 5.882 0 000-11.764zm0 9.577a3.695 3.695 0 110-7.39 3.695 3.695 0 010 7.39zM18.882 5.466a1.432 1.432 0 100 2.864 1.432 1.432 0 000-2.864z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-brand-green" title="Nuestro Facebook">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Barra de navegación -->
+            <nav class="hidden md:flex justify-center items-center py-2 border-t-4 border-yellow-400">
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Inicio</a>
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Lúpulos</a>
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Maltas</a>
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Levaduras</a>
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Sales</a>
+                <a href="#" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Placas</a>
+                <a href="#contact-form" class="px-4 py-2 text-gray-700 font-semibold hover:text-brand-green">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main>
+        <!-- Sección Héroe con fondo animado -->
+        <section class="relative text-white h-96 flex items-center justify-center animated-bg">
+            <div id="hop-container" class="absolute inset-0"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">La Calidad que tu Cerveza Merece</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Encontrá la mejor selección de lúpulos, maltas y levaduras para llevar tu producción al siguiente nivel.</p>
+                <a href="#" class="bg-brand-yellow text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-brand-yellow-dark transition-colors">Ver todos los productos</a>
+            </div>
+        </section>
+
+        <!-- Sección de Categorías -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-2 text-brand-green">Explorá Nuestras Categorías</h2>
+                <p class="text-gray-600 mb-12">Todo lo que necesitás, en un solo lugar.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                    <!-- Categoría Lúpulos -->
+                    <div class="flex flex-col items-center group">
+                        <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                            <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193l-3.72.241c-1.12.072-2.072 1.007-2.072 2.132v1.172c0 .97-.747 1.75-1.67 1.75h-1.118c-.923 0-1.67-.78-1.67-1.75v-1.172c0-1.125-.952-2.06-2.072-2.132l-3.72-.241C4.347 17.1 3.5 16.136 3.5 15v-4.286c0-.97.616-1.813 1.5-2.097l5.523-1.682c.527-.16.92-.663.92-1.221v-1.04c0-.72.583-1.309 1.309-1.309h.08c.726 0 1.309.59 1.309 1.309v1.04c0 .558.393 1.06.92 1.221l5.523 1.682z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Lúpulos</h3>
+                    </div>
+                    <!-- Categoría Maltas -->
+                    <div class="flex flex-col items-center group">
+                        <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                            <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c.266-.176.58-.265.9-.265h.1c.32 0 .634.09.9.265l6 4c.473.315.75.836.75 1.39V19a2 2 0 01-2 2H5a2 2 0 01-2-2V9.226c0-.554.277-1.075.75-1.39l6-4zM12 15.75h.008v.008H12v-.008zM12 6.75h.008v.008H12V6.75z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Maltas</h3>
+                    </div>
+                    <!-- Categoría Levaduras -->
+                    <div class="flex flex-col items-center group">
+                         <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                           <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.512 1.414L9 10.5M9.75 3.104c.142-.202.322-.387.516-.542a2.25 2.25 0 012.468 0c.194.155.374.34.516.542M12 21a8.25 8.25 0 005.25-15.082M12 21a8.25 8.25 0 01-5.25-15.082M12 21v-2.25M12 6.332c.18-.21.392-.39.614-.543a2.25 2.25 0 012.54 0c.222.153.434.333.614.543m-3.768 0v2.25m-3.768-2.25c-.18.21-.392-.39-.614.543a2.25 2.25 0 00-2.54 0c-.222-.153-.434-.333-.614-.543m3.768 0v2.25" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Levaduras</h3>
+                    </div>
+                    <!-- Categoría Equipamiento -->
+                    <div class="flex flex-col items-center group">
+                        <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                            <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.624L16.5 21.75l-.398-1.126a3.375 3.375 0 00-2.456-2.456L12.75 18l1.126-.398a3.375 3.375 0 002.456-2.456L16.5 14.25l.398 1.126a3.375 3.375 0 002.456 2.456L20.25 18l-1.126.398a3.375 3.375 0 00-2.456 2.456z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Equipamiento</h3>
+                    </div>
+                    <!-- Categoría Sales -->
+                    <div class="flex flex-col items-center group">
+                        <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                            <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.512 1.414L9 10.5M20.25 12a.75.75 0 01-.75.75H4.5a.75.75 0 010-1.5h15a.75.75 0 01.75.75zM9 10.5h6m-3 5.25v-5.25" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Sales</h3>
+                    </div>
+                    <!-- Categoría Placas -->
+                    <div class="flex flex-col items-center group">
+                        <div class="bg-gray-100 p-6 rounded-full mb-4 group-hover:bg-yellow-300 transition-colors">
+                            <svg class="w-12 h-12 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold">Placas</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Productos Destacados -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-brand-green">Productos Destacados</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Tarjeta de Producto 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/EEEEEE/333333?text=Lúpulo+Galaxy" alt="Lúpulo Galaxy" class="w-full h-56 object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="text-white bg-brand-yellow font-bold py-2 px-6 rounded-full hover:bg-brand-yellow-dark">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-gray-500">LÚPULOS</span>
+                            <h3 class="text-lg font-semibold mt-1">Lúpulo Galaxy 100g</h3>
+                            <p class="text-xl font-bold mt-2 text-gray-900">$2.500,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Producto 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/EEEEEE/333333?text=Malta+Pilsen" alt="Malta Pilsen" class="w-full h-56 object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="text-white bg-brand-yellow font-bold py-2 px-6 rounded-full hover:bg-brand-yellow-dark">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-gray-500">MALTAS</span>
+                            <h3 class="text-lg font-semibold mt-1">Malta Pilsen x 1kg</h3>
+                            <p class="text-xl font-bold mt-2 text-gray-900">$800,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Producto 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/EEEEEE/333333?text=Levadura+Safale" alt="Levadura Safale US-05" class="w-full h-56 object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="text-white bg-brand-yellow font-bold py-2 px-6 rounded-full hover:bg-brand-yellow-dark">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-gray-500">LEVADURAS</span>
+                            <h3 class="text-lg font-semibold mt-1">Levadura Safale US-05</h3>
+                            <p class="text-xl font-bold mt-2 text-gray-900">$1.200,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Producto 4 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/EEEEEE/333333?text=Kit+de+Inicio" alt="Kit de Inicio para Cerveceros" class="w-full h-56 object-cover">
+                             <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="text-white bg-brand-yellow font-bold py-2 px-6 rounded-full hover:bg-brand-yellow-dark">Ver detalles</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-gray-500">EQUIPAMIENTO</span>
+                            <h3 class="text-lg font-semibold mt-1">Kit de Inicio para Cerveceros</h3>
+                            <p class="text-xl font-bold mt-2 text-gray-900">$35.000,00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Accesorios -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 text-center max-w-3xl">
+                <div class="flex justify-center items-center gap-4 mb-4">
+                    <svg class="w-10 h-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 00-4.773-4.773L6.75 11.25l-2.472 2.472a3.375 3.375 0 004.773 4.773z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-brand-green">Accesorios de Acero Inoxidable</h3>
+                </div>
+                <p class="text-gray-600">Tenemos una amplia gama de accesorios de inoxidable para diferentes aplicaciones en la fabricación de cerveza artesanal. Para consultas y pedidos especiales, no dudes en escribirnos.</p>
+            </div>
+        </section>
+        
+        <!-- Sección Certificados / Búsqueda de Lote -->
+        <section class="py-16 bg-brand-green text-white">
+            <div class="container mx-auto px-4 text-center max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4">Certificados de Calidad</h2>
+                <p class="mb-8 max-w-2xl mx-auto">Ingresá el ID del lote que figura en tu paquete para ver su certificado de análisis y trazabilidad completa.</p>
+                <form id="lote-search-form" class="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
+                    <input type="text" id="lote-id-input" placeholder="Ej: GAL-2024-01" class="w-full sm:w-2/3 px-4 py-3 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-yellow">
+                    <button type="submit" class="w-full sm:w-1/3 bg-brand-yellow text-gray-900 font-bold py-3 px-6 rounded-md hover:bg-brand-yellow-dark transition-colors">
+                        Buscar Lote
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sección Formulario de Contacto -->
+        <section id="contact-form" class="bg-gray-100 py-16">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4 text-brand-green">Ponete en Contacto</h2>
+                    <p class="text-gray-600 mb-8">¿Tenés preguntas o necesitás asesoramiento? Escribinos.</p>
+                </div>
+                <form class="max-w-2xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-yellow" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-yellow" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
+                        <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-yellow" required>
+                    </div>
+                    
+                    <!-- NUEVO: Recomendador de Estilos -->
+                    <div class="mb-6">
+                        <label for="style-selector" class="block text-sm font-medium text-gray-700 mb-1">¿Qué estilo de cerveza querés hacer? (Opcional)</label>
+                        <select id="style-selector" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-yellow bg-white">
+                            <option value="">Seleccioná un estilo para recibir una sugerencia...</option>
+                            <option value="ipa">IPA - Amarga y Aromática</option>
+                            <option value="stout">Stout - Negra y Tostada</option>
+                            <option value="lager">Lager - Rubia y Refrescante</option>
+                            <option value="trigo">Trigo - Ligera y Especiada</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-yellow" required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-brand-yellow text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-brand-yellow-dark transition-colors">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== PIE DE PÁGINA ========== -->
+    <footer class="bg-white border-t">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Columna 1: Logo e Info -->
+                <div>
+                    <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-8 mb-4 logo-shadow">
+                    <p class="text-gray-600">Apasionados por la cerveza, comprometidos con la calidad. Tu proveedor de confianza para insumos cerveceros.</p>
+                </div>
+                <!-- Columna 2: Navegación -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Navegación</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Sobre Nosotros</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Tienda</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-green">Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- Columna 3: Contacto -->
+                 <div>
+                    <h4 class="font-semibold text-lg mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Dirección: Calle Falsa 123, Springfield</li>
+                        <li>Teléfono: +54 11 1234-5678</li>
+                        <li>Email: ventas@pekko.com.ar</li>
+                    </ul>
+                </div>
+                <!-- Columna 4: Redes Sociales -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Seguinos</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-brand-green">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-brand-green">
+                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363.416 2.427.465C9.793 2.013 10.147 2 12.315 2zm0 1.623c-2.403 0-2.73.009-3.685.053-.934.042-1.512.185-1.948.355-.494.192-.884.44-1.272.828-.39.388-.636.778-.828 1.272-.17.436-.313 1.014-.355 1.948-.044.955-.053 1.282-.053 3.685s.009 2.73.053 3.685c.042.934.185 1.512.355 1.948.192.494.44.884.828 1.272.388.39.778.636 1.272.828.436.17 1.014.313 1.948.355.955.044 1.282.053 3.685.053s2.73-.009 3.685-.053c.934-.042 1.512-.185 1.948-.355.494-.192.884.44-1.272-.828.39-.388.636-.778.828-1.272.17-.436.313-1.014-.355-1.948.044-.955.053-1.282.053-3.685s-.009-2.73-.053-3.685c-.042-.934-.185-1.512-.355-1.948a3.273 3.273 0 00-.828-1.272 3.273 3.273 0 00-1.272-.828c-.436-.17-1.014-.313-1.948-.355-.955-.044-1.282-.053-3.685-.053zM12 8.118a5.882 5.882 0 100 11.764 5.882 5.882 0 000-11.764zm0 9.577a3.695 3.695 0 110-7.39 3.695 3.695 0 010 7.39zM18.882 5.466a1.432 1.432 0 100 2.864 1.432 1.432 0 000-2.864z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Barra de copyright -->
+        <div class="bg-gray-200 border-t">
+            <div class="container mx-auto px-4 py-4 text-center text-gray-600 text-sm">
+                <p>&copy; 2024 Pekko Insumos Cerveceros. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Script para partículas animadas
+            const container = document.getElementById('hop-container');
+            if (container) {
+                const particleCount = 30;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('hop-particle');
+                    const size = Math.random() * 5 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    const animationDuration = Math.random() * 10 + 10;
+                    const animationDelay = Math.random() * 15;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    particle.style.animationDelay = `-${animationDelay}s`;
+                    container.appendChild(particle);
+                }
+            }
+
+            // Script para búsqueda de lotes
+            const loteSearchForm = document.getElementById('lote-search-form');
+            if(loteSearchForm) {
+                loteSearchForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const loteIdInput = document.getElementById('lote-id-input');
+                    const loteId = loteIdInput.value.trim().toUpperCase();
+                    if (loteId) {
+                        window.location.href = `lupulo.html?id=${loteId}`;
+                    } else {
+                        loteIdInput.focus();
+                        loteIdInput.placeholder = "Por favor, ingresá un ID de lote";
+                    }
+                });
+            }
+
+            // --- Script para el Recomendador de Estilos ---
+            const styleSelector = document.getElementById('style-selector');
+            const messageTextarea = document.getElementById('message');
+
+            const styleSuggestions = {
+                'ipa': '¡Hola! Quisiera recibir asesoramiento para una cerveza estilo IPA. Busco algo con buen amargor y un perfil aromático intenso, idealmente frutal o cítrico. ¿Qué lúpulos, maltas y levadura me recomiendan?',
+                'stout': '¡Hola! Estoy interesado en preparar una Stout. Me gustaría lograr un perfil con notas a café y chocolate, con buen cuerpo. ¿Qué combinación de maltas, lúpulo y levadura me sugieren?',
+                'lager': '¡Hola! Quiero hacer una Lager clásica, que sea rubia, refrescante y fácil de tomar. ¿Cuáles son los insumos básicos que me recomiendan para empezar?',
+                'trigo': '¡Hola! Me gustaría hacer una cerveza de trigo, busco un resultado ligero, refrescante y con las notas especiadas o a banana típicas del estilo. ¿Qué levadura y lúpulos suaves me aconsejan?'
+            };
+
+            if (styleSelector && messageTextarea) {
+                styleSelector.addEventListener('change', function() {
+                    const selectedStyle = this.value;
+                    if (styleSuggestions[selectedStyle]) {
+                        messageTextarea.value = styleSuggestions[selectedStyle];
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

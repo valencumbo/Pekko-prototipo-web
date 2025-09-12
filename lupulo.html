@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Lote - Pekko Insumos</title>
+    
+    <!-- Tailwind CSS with Typography plugin for recipe formatting -->
+    <script src="https://cdn.tailwindcss.com/3.4.1?plugins=typography"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        :root {
+            --brand-green: #2E4C3E;
+            --brand-yellow: #facc15;
+        }
+        .text-brand-green { color: var(--brand-green); }
+        .logo-shadow {
+            filter: drop-shadow(1px 1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(-1px -1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(1px -1px 0 rgb(0 0 0 / 0.7))
+                    drop-shadow(-1px 1px 0 rgb(0 0 0 / 0.7));
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- ========== ENCABEZADO ========== -->
+    <header class="bg-gray-100 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-center">
+             <a href="index.html">
+                <img src="https://www.pekko.com.ar/wp-content/themes/pekko/inc/assets/images/PEKKO-LOGO.svg" alt="Logo de Pekko Insumos" class="h-10 logo-shadow">
+            </a>
+        </div>
+    </header>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="py-12">
+        <div class="container mx-auto px-4 max-w-2xl">
+            
+            <div id="lupulo-info" class="bg-white p-8 rounded-lg shadow-lg">
+                <h1 id="nombre-lupulo" class="text-3xl md:text-4xl font-bold text-brand-green mb-2">Cargando información del lote...</h1>
+                <p class="text-gray-500 mb-6">Por favor, espere.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider">Cosecha</h2>
+                        <p id="cosecha-lupulo" class="text-xl text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider">Calidad</h2>
+                        <p id="calidad-lupulo" class="text-xl text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider">Alfa Ácidos</h2>
+                        <p id="alpha-lupulo" class="text-xl text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider">Perfil de Aroma</h2>
+                        <p id="aroma-lupulo" class="text-lg text-gray-600">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NUEVO: Contenedor para la Receta Sugerida -->
+            <div id="recipe-suggestion" class="hidden mt-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-brand-green mb-4">Sugerencia de Receta</h2>
+                <!-- El contenido de la receta se insertará aquí con JS -->
+            </div>
+
+            <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mt-8" role="alert">
+                <strong class="font-bold">Error:</strong>
+                <span class="block sm:inline">No se encontró información para el lote especificado. Por favor, verifique el código QR.</span>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="index.html" class="text-yellow-600 hover:text-yellow-800 font-semibold">&larr; Volver a la página principal</a>
+            </div>
+
+        </div>
+    </main>
+    
+    <script>
+        // --- BASE DE DATOS DE EJEMPLO CON RECETAS PREDEFINIDAS ---
+        const datosDeLotes = {
+            "GAL-2024-01": {
+                nombre: "Lúpulo Galaxy",
+                cosecha: "Marzo 2024",
+                calidad: "Premium (T-90)",
+                alpha: "14.5%",
+                aroma: "Maracuyá, durazno y cítricos intensos.",
+                receta: `
+                    <h3 class="text-xl font-semibold mb-2">Galaxy Single Hop IPA (20L) - Receta guia</h3>
+                    <p class="mb-4 text-gray-600">Una IPA simple para que el lúpulo Galaxy sea la estrella principal.</p>
+                    <div class="prose max-w-none">
+                        <h4>Ingredientes:</h4>
+                        <ul>
+                            <li><strong>Maltas:</strong> 5.5 kg Malta Pale Ale</li>
+                            <li><strong>Lúpulos:</strong> 100g Galaxy</li>
+                            <li><strong>Levadura:</strong> 1 sobre Safale US-05</li>
+                        </ul>
+                        <h4>Proceso Básico:</h4>
+                        <p>Macerar a 67°C por 60 min. Hervir por 60 min, añadiendo 20g de Galaxy al inicio, 40g a los 10 min finales, y 40g en whirlpool. Fermentar a 18-20°C.</p>
+                    </div>
+                `
+            },
+            "CAS-2024-45": {
+                nombre: "Lúpulo Cascade",
+                cosecha: "Abril 2024",
+                calidad: "Estándar (T-90)",
+                alpha: "6.8%",
+                aroma: "Floral, especiado y pomelo.",
+                receta: `
+                    <h3 class="text-xl font-semibold mb-2">American Pale Ale Clásica (20L)</h3>
+                    <p class="mb-4 text-gray-600">Una APA clásica donde el Cascade aporta su característico aroma a pomelo.</p>
+                    <div class="prose max-w-none">
+                        <h4>Ingredientes:</h4>
+                        <ul>
+                            <li><strong>Maltas:</strong> 5 kg Malta Pale Ale, 0.5 kg Malta Caramelo 60</li>
+                            <li><strong>Lúpulos:</strong> 80g Cascade</li>
+                            <li><strong>Levadura:</strong> 1 sobre Safale US-05</li>
+                        </ul>
+                        <h4>Proceso Básico:</h4>
+                        <p>Macerar a 66°C por 60 min. Hervir por 60 min, añadiendo 30g de Cascade al inicio, 30g a los 15 min finales, y 20g en whirlpool. Fermentar a 18-20°C.</p>
+                    </div>
+                `
+            },
+            "CIT-2023-12": {
+                nombre: "Lúpulo Citra",
+                cosecha: "Diciembre 2023",
+                calidad: "Premium (T-90)",
+                alpha: "12.7%",
+                aroma: "Uva, lima y frutas tropicales.",
+                // Este lote no tiene receta para demostrar que la sección no aparece si no hay datos.
+            }
+        };
+
+        // --- LÓGICA DE LA PÁGINA ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const loteId = params.get('id');
+            const infoContainer = document.getElementById('lupulo-info');
+            const errorContainer = document.getElementById('error-message');
+            const recipeContainer = document.getElementById('recipe-suggestion');
+
+            if (loteId && datosDeLotes[loteId]) {
+                const data = datosDeLotes[loteId];
+                document.getElementById('nombre-lupulo').textContent = data.nombre;
+                document.getElementById('cosecha-lupulo').textContent = data.cosecha;
+                document.getElementById('calidad-lupulo').textContent = data.calidad;
+                document.getElementById('alpha-lupulo').textContent = data.alpha;
+                document.getElementById('aroma-lupulo').textContent = data.aroma;
+                document.title = `${data.nombre} - Pekko Insumos`;
+
+                // Si existe una receta para este lote, la muestra
+                if (data.receta) {
+                    recipeContainer.innerHTML = data.receta;
+                    recipeContainer.classList.remove('hidden');
+                }
+
+            } else {
+                infoContainer.style.display = 'none';
+                errorContainer.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
+
