@@ -5,30 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pekko - Insumos para Cerveceros</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Habilitar el desplazamiento suave y añadir padding para el anclaje del header fijo */
         html {
             scroll-behavior: smooth;
-            /* Esta es la corrección: añade un espacio arriba al hacer scroll a un ancla */
-            /* Ajusta este valor si la altura del header cambia */
             scroll-padding-top: 100px; 
         }
 
-        /* Usamos la fuente Inter como base */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* bg-slate-50 */
         }
         
-        /* Colores de la marca para fácil acceso */
+        /* Colores de la marca */
         :root {
             --brand-green: #2E4C3E;
             --brand-yellow: #facc15;
@@ -81,7 +75,7 @@
             max-height: 0;
         }
         .faq-question.open + .faq-answer {
-            max-height: 300px; /* Ajusta este valor si la respuesta es muy larga */
+            max-height: 300px;
         }
         .faq-icon {
             transition: transform 0.3s ease-in-out;
@@ -186,21 +180,21 @@
 
                     <!-- Tarjeta 4: Ingredion -->
                     <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
-                         <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/ingredion.png-e1573151120694.jpg" alt="Logo Ingredion" class="max-h-full max-w-full"></div>
+                        <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/ingredion.png-e1573151120694.jpg" alt="Logo Ingredion" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Ingredion</h3>
                         <p class="text-gray-600">Empresa líder en la elaboración de edulcorantes, almidones, ingredientes nutricionales y biomateriales que son utilizados en alimentos, bebidas.</p>
                     </div>
                     
                     <!-- Tarjeta 5: Pall -->
                     <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
-                         <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/pall-corporation.jpg" alt="Logo Pall Corporation" class="max-h-full max-w-full"></div>
+                        <div class="flex justify-center items-center h-20 w-full mb-8"><img src="gallery/pall-corporation.jpg" alt="Logo Pall Corporation" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Pall</h3>
                         <p class="text-gray-600">Pall es líder a nivel mundial en sistemas de filtrado en la industria alimenticia. Trabajamos la línea de filtros de celulosa para filtro de placas y marcos.</p>
                     </div>
 
                     <!-- Tarjeta 6: Patagonia Malt -->
                     <div class="bg-gray-50 rounded-lg p-6 text-center shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
-                         <div class="flex justify-center items-center h-20 w-full mb-9"><img src="gallery/patagonia-malt.png" alt="Logo Patagonia Malt" class="max-h-full max-w-full"></div>
+                        <div class="flex justify-center items-center h-20 w-full mb-9"><img src="gallery/patagonia-malt.png" alt="Logo Patagonia Malt" class="max-h-full max-w-full"></div>
                         <h3 class="text-xl font-bold text-brand-green mb-2">Patagonia Malt</h3>
                         <p class="text-gray-600">Elegimos Patagonia por ser una empresa seria y confiable. Con foco en el mercado Craft de toda América, sus productos están en constante evolución.</p>
                     </div>
